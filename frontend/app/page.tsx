@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/lib/stores/auth";
+import LandingPage from "./landing";
 
 export default function HomePage() {
   const { isAuthenticated } = useAuthStore();
@@ -10,11 +11,14 @@ export default function HomePage() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push("/dashboard");
-    } else {
-      router.push("/auth/login");
+      router.replace("/dashboard");
     }
   }, [isAuthenticated, router]);
+
+  // Show landing page for unauthenticated users
+  if (!isAuthenticated) {
+    return <LandingPage />;
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center">

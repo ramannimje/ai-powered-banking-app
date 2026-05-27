@@ -18,11 +18,15 @@ import {
   Menu,
   X,
   TrendingUp,
+  Plus,
+  User,
+  Wallet,
 } from "lucide-react";
 import { useAuthStore } from "@/lib/stores/auth";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/dashboard/add-money", label: "Add Money", icon: Plus },
   { href: "/dashboard/transactions", label: "Transactions", icon: ArrowLeftRight },
   { href: "/dashboard/cards", label: "Cards", icon: CreditCard },
   { href: "/dashboard/savings-vaults", label: "Savings Vaults", icon: PiggyBank },
@@ -30,6 +34,8 @@ const navItems = [
   { href: "/dashboard/ai-copilot", label: "AI Copilot", icon: Bot },
   { href: "/dashboard/budget-planner", label: "Budget Planner", icon: Calculator },
   { href: "/dashboard/autonomous-agent", label: "Auto Agent", icon: Sparkles },
+  { href: "/dashboard/notifications", label: "Notifications", icon: Bell },
+  { href: "/dashboard/profile", label: "Profile", icon: User },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

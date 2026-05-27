@@ -1,0 +1,1 @@
+# Empty — index for layout components
