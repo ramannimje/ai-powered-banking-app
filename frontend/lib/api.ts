@@ -135,28 +135,47 @@ class ApiClient {
     return this.request("/analytics/summary", { token });
   }
 
-  // AI
-  async chat(message: string, token: string) {
-    return this.request("/ai/chat", { method: "POST", body: { message }, token });
+  // AI / Copilot
+  async chat(message: string, token: string, conversationId?: string) {
+    return this.request("/ai/chat", { method: "POST", body: { message, conversation_id: conversationId }, token });
   }
 
   async budgetSimulate(data: { item: string; amount: number; months: number }, token: string) {
     return this.request("/ai/budget-simulate", { method: "POST", body: data, token });
   }
 
-  // Notifications
-  async getNotifications(params: Record<string, string>, token: string) {
+  async getConversations(token: string) {
+    return this.request("/ai/conversations", { token });
+  }
+
+  async getConversation(convId: string, token: string) {
+    return this.request(`/ai/conversations/${convId}`, { token });
+  }
+
+  async deleteConversation(convId: string, token: string) {
+    return this.request(`/ai/conversations/${convId}`, { method: "DELETE", token });
+  }
+
+  async getAnomalies(params: Record<string, string>, token: string) {
     const query = new URLSearchParams(params).toString();
-    return this.request(`/notifications?${query}`, { token });
+    return this.request(`/ai/anomalies?${query}`, { token });
   }
 
-  async markNotificationRead(id: string, token: string) {
-    return this.request(`/notifications/${id}/read`, { method: "POST", token });
+  async resolveAnomaly(anomalyId: string, token: string) {
+    return this.request(`/ai/anomalies/${anomalyId}/resolve`, { method: "POST", token });
   }
 
-  // Fraud
+  // Fraud / Security
+  async getFraudDashboard(token: string) {
+    return this.request("/fraud/security-dashboard", { token });
+  }
+
   async getFraudAlerts(token: string) {
     return this.request("/fraud/alerts", { token });
+  }
+
+  async scanAnomalies(token: string) {
+    return this.request("/fraud/scan-anomalies", { method: "POST", token });
   }
 }
 

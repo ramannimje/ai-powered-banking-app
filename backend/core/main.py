@@ -7,6 +7,10 @@ from core.config import settings
 from core.database import async_engine, Base
 from core import auth, accounts, transactions, ai, fraud, analytics, notifications
 
+# Import all models so Base.metadata sees them all
+import core.models
+import core.models_ai  # noqa
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -14,7 +18,6 @@ async def lifespan(app: FastAPI):
     async with async_engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
     yield
-    # Cleanup
     await async_engine.dispose()
 
 

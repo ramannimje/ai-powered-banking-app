@@ -21,6 +21,7 @@ import {
   Plus,
   User,
   Wallet,
+  Shield,
 } from "lucide-react";
 import { useAuthStore } from "@/lib/stores/auth";
 
@@ -32,6 +33,7 @@ const navItems = [
   { href: "/dashboard/savings-vaults", label: "Savings Vaults", icon: PiggyBank },
   { href: "/dashboard/analytics", label: "Analytics", icon: PieChart },
   { href: "/dashboard/ai-copilot", label: "AI Copilot", icon: Bot },
+  { href: "/dashboard/fraud-dashboard", label: "Security", icon: Shield },
   { href: "/dashboard/budget-planner", label: "Budget Planner", icon: Calculator },
   { href: "/dashboard/autonomous-agent", label: "Auto Agent", icon: Sparkles },
   { href: "/dashboard/notifications", label: "Notifications", icon: Bell },
