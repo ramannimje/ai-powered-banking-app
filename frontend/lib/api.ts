@@ -177,6 +177,35 @@ class ApiClient {
   async scanAnomalies(token: string) {
     return this.request("/fraud/scan-anomalies", { method: "POST", token });
   }
+
+  // Autonomous Agent
+  async getAutonomousStatus(token: string) {
+    return this.request("/autonomous/status", { token });
+  }
+
+  async getAutonomousRules(token: string) {
+    return this.request("/autonomous/rules", { token });
+  }
+
+  async createAutonomousRule(data: any, token: string) {
+    return this.request("/autonomous/rules", { method: "POST", body: data, token });
+  }
+
+  async updateAutonomousRule(ruleId: string, data: any, token: string) {
+    return this.request(`/autonomous/rules/${ruleId}`, { method: "PUT", body: data, token });
+  }
+
+  async deleteAutonomousRule(ruleId: string, token: string) {
+    return this.request(`/autonomous/rules/${ruleId}`, { method: "DELETE", token });
+  }
+
+  async executeAutonomousRule(ruleId: string, token: string) {
+    return this.request(`/autonomous/rules/${ruleId}/execute`, { method: "POST", token });
+  }
+
+  async getRuleLogs(ruleId: string, token: string) {
+    return this.request(`/autonomous/rules/${ruleId}/logs`, { token });
+  }
 }
 
 export const api = new ApiClient();

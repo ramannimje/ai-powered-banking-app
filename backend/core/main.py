@@ -5,11 +5,12 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from core.config import settings
 from core.database import async_engine, Base
-from core import auth, accounts, transactions, ai, fraud, analytics, notifications
+from core import auth, accounts, transactions, ai, fraud, analytics, notifications, autonomous
 
 # Import all models so Base.metadata sees them all
 import core.models
-import core.models_ai  # noqa
+import core.models_ai
+import core.models_autonomous  # noqa
 
 
 @asynccontextmanager
@@ -45,6 +46,7 @@ app.include_router(ai.router, prefix="/api")
 app.include_router(fraud.router, prefix="/api")
 app.include_router(analytics.router, prefix="/api")
 app.include_router(notifications.router, prefix="/api")
+app.include_router(autonomous.router, prefix="/api")
 
 
 @app.get("/health")
