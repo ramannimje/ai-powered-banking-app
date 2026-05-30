@@ -27,9 +27,21 @@ AI-Powered Smart Banking Super App — a full-stack fintech application with AI 
 - **Autonomous Finance Agent** — Rule-based auto-saving (e.g., "Save ₹500 when food spending is below average")
 
 ### Observability
-- OpenTelemetry tracing
-- Prometheus metrics
-- Grafana dashboards
+- OpenTelemetry tracing middleware with request logging
+- Prometheus metrics (request rate, latency, business KPIs)
+- Grafana dashboards (Overview, Business Metrics, Rule Executions)
+- Seed data script with 90 days of realistic transaction history
+
+## Seed Data
+
+```bash
+cd backend
+python -m scripts.seed_data
+```
+
+Creates 2 demo users, accounts, 90 days of transactions, cards, savings vaults, autonomous rules, and notifications.
+
+**Demo credentials:** `demo@aisb.com` / `password123`
 
 ## Quick Start
 
@@ -90,15 +102,18 @@ npm run dev
 ```
 ai-smart-bank/
 ├── backend/
-│   ├── core/           # Config, DB, models, auth, schemas
-│   ├── services/      # FastAPI route handlers (accounts, transactions, AI, fraud, etc.)
+│   ├── core/           # Config, DB, models, auth, schemas, telemetry
+│   ├── services/       # FastAPI route handlers (accounts, transactions, AI, fraud, etc.)
 │   ├── workers/        # Celery tasks
+│   ├── scripts/        # Seed data, migrations
 │   └── requirements.txt
 ├── frontend/
 │   ├── app/           # Next.js App Router pages
 │   ├── components/    # UI components
 │   └── lib/           # API client, Zustand stores, utils
-├── docker-compose.yml
+├── infra/             # Prometheus, Grafana config
+├── docker-compose.yml         # Core stack (API, DB, workers)
+├── docker-compose.monitoring.yml  # Add Prometheus + Grafana
 └── PLAN.md
 ```
 

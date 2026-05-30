@@ -1,0 +1,9 @@
+apiVersion: 1
+
+providers:
+  - name: "AI Smart Bank Dashboards"
+    orgId: 1
+    folder: "AI Smart Bank"
+    type: file
+    options:
+      path: /etc/grafana/provisioning/dashboards
